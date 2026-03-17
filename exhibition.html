@@ -3,109 +3,344 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Exhibition Lead Form Link</title>
+  <title>Exhibition Lead Form - Solana Intern</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
-      --dark-blue: #142850;
-      --light-gold: #F1C232;
-      --orange: #F89B1C;
-      --orange-hover: #FF7505;
-      --white: #ffffff;
+      --solana-purple: #9945FF;
+      --solana-blue: #14F195;
+      --dark-bg: #0A0A0F;
+      --card-bg: rgba(20, 20, 30, 0.8);
+      --glass-bg: rgba(255, 255, 255, 0.05);
+      --text-primary: #FFFFFF;
+      --text-secondary: #B0B3B8;
+      --gradient-primary: linear-gradient(135deg, #9945FF 0%, #14F195 50%, #00D4FF 100%);
+      --gradient-secondary: linear-gradient(135deg, rgba(153, 69, 255, 0.2) 0%, rgba(20, 241, 149, 0.2) 100%);
+      --border-glow: 0 0 20px rgba(153, 69, 255, 0.3);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
     body {
-      margin: 0;
-      padding: 20px;
-      background-color: var(--dark-blue);
-      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(180deg, var(--dark-bg) 0%, #1A1A2E 100%);
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
     }
 
-    h2 {
+    /* Animated Background */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 20% 80%, rgba(153, 69, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(20, 241, 149, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(0, 212, 255, 0.05) 0%, transparent 50%);
+      z-index: -1;
+      animation: float 20s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      33% { transform: translateY(-20px) rotate(1deg); }
+      66% { transform: translateY(-10px) rotate(-1deg); }
+    }
+
+    /* Header */
+    .header {
+      background: rgba(10, 10, 15, 0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(153, 69, 255, 0.2);
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 2rem;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 1.5rem;
+      font-weight: 700;
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .logo i {
+      font-size: 2rem;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    /* Main Content */
+    .main-content {
+      padding: 2rem 1rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .hero-title {
       text-align: center;
-      color: var(--light-gold);
-      font-size: 28px;
-      margin-bottom: 30px;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1rem;
+      line-height: 1.2;
     }
 
-    .section {
-      background-color: var(--white);
-      border-radius: 12px;
-      padding: 25px;
-      max-width: 800px;
-      margin: 20px auto;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    .subtitle {
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 1.2rem;
+      margin-bottom: 4rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Cards Section */
+    .cards-section {
+      display: grid;
+      gap: 2rem;
+      margin-bottom: 4rem;
     }
 
     .section-title {
       text-align: center;
-      font-size: 22px;
-      font-weight: bold;
-      color: var(--dark-blue);
-      margin-bottom: 20px;
-      border-bottom: 2px solid var(--light-gold);
-      padding-bottom: 8px;
+      font-size: clamp(1.5rem, 3vw, 2.5rem);
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 2rem;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background: var(--gradient-primary);
+      border-radius: 2px;
     }
 
     .button-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 15px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
     }
 
     .link-button {
-      background-color: var(--orange);
-      color: var(--white);
-      padding: 14px 20px;
-      font-size: 16px;
-      font-weight: 600;
-      border: none;
-      border-radius: 8px;
-      text-align: center;
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 1.5rem 2rem;
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--text-primary);
       text-decoration: none;
-      display: block;
-      transition: background 0.2s ease;
+      text-align: center;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .link-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s;
+    }
+
+    .link-button:hover::before {
+      left: 100%;
     }
 
     .link-button:hover {
-      background-color: var(--orange-hover);
+      transform: translateY(-8px);
+      box-shadow: var(--border-glow);
+      border-color: var(--solana-purple);
+      background: rgba(153, 69, 255, 0.15);
     }
 
-    @media (max-width: 600px) {
+    .link-button:active {
+      transform: translateY(-4px);
+    }
+
+    /* Footer */
+    .footer {
+      background: rgba(10, 10, 15, 0.95);
+      backdrop-filter: blur(20px);
+      border-top: 1px solid rgba(153, 69, 255, 0.2);
+      padding: 3rem 2rem 2rem;
+      margin-top: 4rem;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+      color: var(--text-secondary);
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--solana-purple);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 1.5rem;
+      font-size: 0.9rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header-content,
+      .footer-links {
+        padding: 0 1rem;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
       .button-grid {
         grid-template-columns: 1fr;
+        gap: 1rem;
       }
 
-      .link-button {
-        font-size: 15px;
-        padding: 12px;
+      .hero-title {
+        margin-bottom: 0.5rem;
       }
 
-      .section-title {
-        font-size: 20px;
+      .subtitle {
+        font-size: 1rem;
       }
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--gradient-primary);
+      border-radius: 4px;
     }
   </style>
 </head>
 <body>
-
-  <h2>Exhibition Lead Form Link try</h2>
-
-  <div class="section">
-    <div class="section-title">Select Your TNB Bill Range Now</div>
-    <div class="button-grid">
-      <a class="link-button" href="https://drive.google.com/file/d/1T5-GRC82QRytGv41152jCaHYACA00h4h/view?usp=sharing">RM 250-300</a> 
-      <a class="link-button" href="https://drive.google.com/file/d/1mnl51ZEgKN1HHB7879F9qSCBwQVQspex/view?usp=sharing">RM 300–350</a> 
-      <a class="link-button" href="https://drive.google.com/file/d/1o0EbSTaqH5yVUBrKb4yiQnBFiJ1uZHfG/view?usp=sharing">RM 350–450</a> 
-      <a class="link-button" href="https://drive.google.com/file/d/17_sdCedy1UoFkP3hOf_JjLXkUNsv_Or_/view?usp=sharing">RM 450–500</a> 
-      <a class="link-button" href="https://drive.google.com/file/d/1B12hQ9XOSePOwt5ihnYuI9YTdckwbiX7/view?usp=sharing">RM 500–600</a> 
-      <a class="link-button" href="https://drive.google.com/file/d/180fcjiyjj2taHNyhiaW01D3fkv_lLLwE/view?usp=sharing">RM 600–700</a> 
-      <a class="link-button" href="https://drive.google.com/file/d/1b6GC9CeFgfPfOIEgDfemt72gQHg0KrQR/view?usp=sharing">RM 700–900</a> 
-      <a class="link-button" href="https://drive.google.com/file/d/1Yp5acqeXZ9QkLNq31026Mi4yo8PgvBbB/view?usp=sharing">RM 1000 and Above</a>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-content">
+      <div class="logo">
+        <i class="fab fa-solana"></i>
+        <span>Solana Exhibition</span>
+      </div>
     </div>
-  </div>
+  </header>
 
+  <!-- Main Content -->
+  <main class="main-content">
+    <h1 class="hero-title">Exhibition Lead Form Link</h1>
+    <p class="subtitle">Select your TNB bill range to unlock your personalized form</p>
+
+    <div class="cards-section">
+      <h2 class="section-title">Choose Your Bill Range</h2>
+      <div class="button-grid">
+        <a class="link-button" href="https://drive.google.com/file/d/1T5-GRC82QRytGv41152jCaHYACA00h4h/view?usp=sharing">
+          <span>RM 250-300</span>
+        </a> 
+        <a class="link-button" href="https://drive.google.com/file/d/1mnl51ZEgKN1HHB7879F9qSCBwQVQspex/view?usp=sharing">
+          <span>RM 300–350</span>
+        </a> 
+        <a class="link-button" href="https://drive.google.com/file/d/1o0EbSTaqH5yVUBrKb4yiQnBFiJ1uZHfG/view?usp=sharing">
+          <span>RM 350–450</span>
+        </a> 
+        <a class="link-button" href="https://drive.google.com/file/d/17_sdCedy1UoFkP3hOf_JjLXkUNsv_Or_/view?usp=sharing">
+          <span>RM 450–500</span>
+        </a> 
+        <a class="link-button" href="https://drive.google.com/file/d/1B12hQ9XOSePOwt5ihnYuI9YTdckwbiX7/view?usp=sharing">
+          <span>RM 500–600</span>
+        </a> 
+        <a class="link-button" href="https://drive.google.com/file/d/180fcjiyjj2taHNyhiaW01D3fkv_lLLwE/view?usp=sharing">
+          <span>RM 600–700</span>
+        </a> 
+        <a class="link-button" href="https://drive.google.com/file/d/1b6GC9CeFgfPfOIEgDfemt72gQHg0KrQR/view?usp=sharing">
+          <span>RM 700–900</span>
+        </a> 
+        <a class="link-button" href="https://drive.google.com/file/d/1Yp5acqeXZ9QkLNq31026Mi4yo8PgvBbB/view?usp=sharing">
+          <span>RM 1000+</span>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-links">
+        <a href="https://www.facebook.com/solanatec/"><i class="fab fa-facebook-f"></i> SolanaTec</a>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Solana Exhibition Lead Forms. 
+           <i class="fas fa-rocket" style="color: var(--solana-blue); margin-left: 0.5rem;"></i>
+        </p>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
-
-
-

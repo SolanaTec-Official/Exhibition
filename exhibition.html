@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Exhibition Lead Form – Solana Tec</title>
+  <title>Exhibition Lead Form</title>
   <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
@@ -35,8 +35,6 @@
       display: flex;
       flex-direction: column;
     }
-
-    /* ── Animated background orbs ── */
     body::before {
       content: '';
       position: fixed;
@@ -53,8 +51,6 @@
       from { transform: scale(1) rotate(0deg); }
       to   { transform: scale(1.1) rotate(3deg); }
     }
-
-    /* ── Sticky Header ── */
     .header {
       position: sticky;
       top: 0;
@@ -130,7 +126,7 @@
       50%      { opacity: 0.4; transform: scale(1.4); }
     }
 
-    /* ── Main ── */
+    
     main {
       flex: 1;
       max-width: 1000px;
@@ -252,7 +248,7 @@
       transition: transform 0.18s, border-color 0.2s, box-shadow 0.2s;
     }
 
-    /* shimmer sweep */
+
     .link-button::after {
       content: '';
       position: absolute;
@@ -264,7 +260,6 @@
 
     .link-button:hover::after { left: 150%; }
 
-    /* fill overlay */
     .link-button::before {
       content: '';
       position: absolute;
@@ -296,7 +291,7 @@
       transform: translateX(4px);
     }
 
-    /* ── Footer ── */
+   
     footer {
       position: relative;
       z-index: 1;
@@ -342,7 +337,6 @@
 
     .footer-bottom span { color: var(--light-gold); opacity: 0.8; }
 
-    /* ── Responsive ── */
     @media (max-width: 600px) {
       .header-badge { display: none; }
       .card { padding: 22px 16px; }
